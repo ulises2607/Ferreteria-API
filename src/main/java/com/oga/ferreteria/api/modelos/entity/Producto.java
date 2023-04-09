@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -36,6 +37,11 @@ public class Producto implements Serializable{
 	@Column(name="fecha_alta_producto")
 	@Temporal(TemporalType.DATE)
 	private Date fecha_alta_producto;
+	
+	@PrePersist
+	public void prePersist() {
+		fecha_alta_producto = new Date();
+	}
 	
 	@Column(name="fecha_modificacion_producto")
 	@Temporal(TemporalType.DATE)
